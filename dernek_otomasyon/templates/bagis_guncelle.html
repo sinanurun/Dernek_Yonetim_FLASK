@@ -1,0 +1,70 @@
+{% extends "yonetici.html" %}
+
+{% block sayfa_baslik %}
+Yönetici Sayfası - Bağış Güncelleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dernek Otomasyon Sistemi Bağış Güncelleme Sayfasındasınız {{ yonetici.uye_adi_soyadi.upper() }}<br>
+    Aşağıdaki Formu Doldurarak Seçili Bağışı Güncelleyebilirsiniz
+{% endblock %}
+
+
+{% block icerik %}
+    
+    {% if mesaj %}
+
+    <div class="alert alert-success" role="alert">
+
+ Bağış Güncelleme Ekleme İşleminiz {{ mesaj }} İle Sonuçlanmıştır<br>
+ Yukarıda Bulunan Menü Aracılığı ile Yapmak İstediğiniz İşlemi Seçebilirsiniz
+
+
+</div>
+     {% else %}
+
+        <form action="/bagis_guncelle" method="post">
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <label>Bağışçı Adı Soyadı</label><br>
+          <input type="text" class="form-control" id="inputPassword4" placeholder="Bağış Yapan" name="bagis_yapan" value={{ bagislar.bagis_yapan}}>
+
+    </div>
+    <div class="form-group col-md-4">
+      <label >Bağış Tutarı</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Bağış Tutarı" name="bagis_tutari" value={{ bagislar.bagis_tutari }}>
+    </div>
+          <div class="form-group col-md-4">
+      <label >Bağış Tarihi</label>
+
+      <input type="text" class="form-control" id="inputPassword4"  name="bagis_tarihi" value={{bagislar.bagis_tarihi }} >
+
+
+
+    </div>
+
+
+
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-8">
+      <label for="inputState">Bağış Açıklama</label>
+
+        <textarea class="form-control" rows="3" id="comment" placeholder="Bağış Açıklaması" name="bagis_aciklama">{{ bagislar.bagis_aciklama }}</textarea>
+    </div>
+
+    <div class="form-group col-md-4" >
+  <br>
+        <input type="hidden" value={{ bagislar.bagis_id }} name="bagis_id">
+      <button type="submit" class="btn btn-primary" >Bağış Güncelle</button>
+    </div>
+  </div>
+
+
+</form>
+
+    {% endif %}
+{% endblock %}
+
+

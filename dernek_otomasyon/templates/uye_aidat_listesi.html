@@ -1,0 +1,48 @@
+{% extends "uye.html" %}
+
+{% block sayfa_baslik %}
+Üye Sayfası - Üye Aidat Listeleme Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dernek Otomasyon Size Aidat Listeleme Sayfasındasınız {{ uye.uye_adi_soyadi.upper() }}<br>
+    Aşağıda Derneğinize Kayıtlı Bulunan Size Ait Aidatların Listesini Bulabilirsiniz
+{% endblock %}
+
+
+
+
+
+
+
+    {% block icerik %}
+    <div class="alert alert-success" role="alert">
+    Derneğe Kayıtlı bulunan Toplam Aidat Sayısı : {{ aidatlar.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Üye Adı Soyadı</th>
+      <th scope="col">Aidat Tutarı</th>
+      <th scope="col">Aidat Tarihi</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for aidat in aidatlar %}
+    <tr>
+      <th scope="row">{{ aidat.aidat_id}}</th>
+      <td>{{ aidat.aidatuye.uye_adi_soyadi }}</td>
+      <td>{{ aidat.aidat_tutari}}</td>
+      <th>{{ aidat.aidat_tarihi}}</th>
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    {% endblock %}
+
+

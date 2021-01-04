@@ -1,0 +1,49 @@
+{% extends "uye.html" %}
+
+{% block sayfa_baslik %}
+Üye Sayfası - Bağış Listesi Sayfası
+{% endblock %}
+
+{% block icerik_baslik %}
+ Dernek Otomasyon Sistemi Bağış Listeleme Sayfasındasınız {{ uye.uye_adi_soyadi.upper() }}<br>
+    Aşağıda Derneğinize Kayıtlı Bulunan Bağışların Listesini Bulabilirsiniz
+{% endblock %}
+
+
+
+
+
+
+
+    {% block icerik %}
+    <div class="alert alert-success" role="alert">
+    Derneğe Kayıtlı bulunan Toplam Bağış Sayısı : {{ bagislar.__len__() }} <br>
+    </div>
+        <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Bağışçı Adı Soyadı</th>
+      <th scope="col">Bağış Tutarı</th>
+      <th scope="col">Bağış Tarihi</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for bagis in bagislar %}
+    <tr>
+      <th scope="row">{{ bagis.bagis_id}}</th>
+      <td>{{ bagis.bagis_yapan }}</td>
+      <td>{{ bagis.bagis_tutari}}</td>
+      <th>{{bagis.bagis_tarihi}}</th>
+
+
+    </tr>
+    {% endfor %}
+    </table>
+
+
+
+    {% endblock %}
+
+
